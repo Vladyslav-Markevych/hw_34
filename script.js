@@ -52,11 +52,13 @@ function updateWidthAndColor(event) {
   }
 }
 
-cancel.addEventListener("click", function () {
+function cancelModal() {
   document.getElementById("width").value = "";
   document.getElementById("color").value = "";
   document.querySelector(".wrapper").style.display = "none";
-});
+}
+
+cancel.addEventListener("click", cancelModal);
 update.addEventListener("click", updateWidthAndColor);
 
 gallery.addEventListener("contextmenu", function contextmenu(event) {
@@ -104,3 +106,10 @@ function moveCircle(event) {
 }
 
 gallery.addEventListener("click", moveCircle);
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    if (document.querySelector(".wrapper").style.display == "block") {
+      cancelModal();
+    }
+  }
+});
